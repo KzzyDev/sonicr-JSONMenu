@@ -1,0 +1,26 @@
+name: Build JSONMenu
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: microsoft/setup-msbuild@v2
+
+      - name: Build Release Win32
+        run: >
+          msbuild JSONMenu/JSONMenu.vcxproj
+          /p:Configuration=Release
+          /p:Platform=Win32
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: JSONMenu-Release
+          path: |
+            **/Release/*.dll
+            **/Release/*.pdb

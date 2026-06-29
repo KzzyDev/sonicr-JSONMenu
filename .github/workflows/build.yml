@@ -13,10 +13,7 @@ jobs:
       - uses: microsoft/setup-msbuild@v2
 
       - name: Build Release
-        run: |
-          msbuild JSONMenu/JSONMenu.vcxproj ^
-          /p:Configuration=Release ^
-          /p:Platform=Win32
+        run: msbuild JSONMenu/JSONMenu.vcxproj /p:Configuration=Release /p:Platform=Win32
 
       - uses: actions/upload-artifact@v4
         with:
